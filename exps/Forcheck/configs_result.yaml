@@ -1,0 +1,82 @@
+base_lr: 4.0e-05
+clean_noise: true
+const_max: 1
+debug: true
+ema_factor: 0.99
+exp_result:
+  Test_WMA_stu: 0.5434782608695652
+  Test_WMA_tch: 0.5434782608695652
+  Val_WMA_stu: 0.7894736842105263
+  Val_WMA_tch: 1.0
+  optim_threshold_stu: 0.0
+  optim_threshold_tch: 0.0
+external_data_subpath:
+  kaggle_set_a: kag_dataset_1/set_a
+  kaggle_set_b: kag_dataset_1/set_b
+  pysionet_sufhsdb: pysionet_sufhsdb
+external_datapath: !!python/object/apply:pathlib.PosixPath
+- /
+- Data2
+- heart_sound_dataset
+final_lr: 1.0e-05
+freq_bins: 40
+freq_high: 800
+gpu_index: '0'
+hop_length: 0.02
+learning_rate: 0.0005
+max_epoch: 250
+max_lr: 0.001
+mixup_alpha: 0.2
+mixup_beta: 0.2
+mixup_label_type: soft
+model_params_dict:
+  attn_module:
+    MHA_params:
+      batch_first: true
+      embed_dim: 120
+      num_heads: 4
+    layernorm_dim: 120
+  frame_linear:
+    act_func_name: gelu
+    dropout_rate: 0.3
+    hidden_dims:
+    - 40
+    input_dim: 120
+    output_dim: 3
+  murmur_linear:
+    input_dim: 1
+    output_dim: 2
+  rnn_params:
+    batch_first: true
+    bidirectional: true
+    dropout: 0.1
+    hidden_size: 60
+    input_size: 40
+    num_layers: 3
+num_k: 5
+num_workers: 8
+pos_weight: 4.0
+random_seed: 0
+sampling_rate: 4000
+save_path: !!python/object/apply:pathlib.PosixPath
+- exps
+- Forcheck
+test_datapath: !!python/object/apply:pathlib.PosixPath
+- /
+- Data2
+- murmur
+- test
+train_bs: 80
+train_datapath: !!python/object/apply:pathlib.PosixPath
+- /
+- Data2
+- murmur
+- train
+train_seq_len: 6
+training_patience: 10
+unlabel_bs: 160
+use_mixup: false
+val_bs: 120
+val_fold_num: 3
+verbose: 1
+window_length: 0.05
